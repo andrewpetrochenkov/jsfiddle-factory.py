@@ -71,6 +71,7 @@ class Factory:
                     os.rename(path, new_path)
                     print("%s -> %s" % (path, new_path))
                     renamed = True
+                    break
 
     def update_resources(self):
         f = os.path.join(self.path, "resources.txt")
