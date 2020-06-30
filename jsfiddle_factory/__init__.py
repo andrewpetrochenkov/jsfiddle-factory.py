@@ -1,4 +1,6 @@
-#!/usr/bin/env python
+__all__ = ['Factory']
+
+
 import jsfiddle_build
 import jsfiddle_github
 import jsfiddle_generator
@@ -7,7 +9,6 @@ import getdirs
 import getfiles
 import os
 import popd
-import public
 import yaml
 
 
@@ -21,7 +22,8 @@ def _build(path):
 def _init(path):
     os.chdir(path)
     isempty = len(os.listdir(path)) == 0
-    isfiddle = len(list(filter(os.path.exists, ["demo.css", "demo.js", "demo.html"]))) > 0
+    isfiddle = len(
+        list(filter(os.path.exists, ["demo.css", "demo.js", "demo.html"]))) > 0
     if isempty or isfiddle:
         jsfiddle_generator.JSFiddleRepo().create()
 
@@ -32,7 +34,6 @@ def _readme(path):
     jsfiddle_readme_generator.Readme().save("README.md")
 
 
-@public.add
 class Factory:
     """attrs: `path`. methods: `detox()`, `init()`, `build()`, `readme()`, `update_resources()`"""
     path = None
